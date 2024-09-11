@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Appointment</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            background-image: url('Appointment 1.png'); /* Replace 'Appointment 1.png' with the path to your image */
+            background-size: 320px;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.8); /* Adjust opacity as needed */
+            padding: 20px;
+            border-radius: 10px;
+            width: 50%;
+            max-width: 500px;
+            text-align: center;
+        }
+
+        h1 {
+            margin-top: 0;
+        }
+
+        .date-time-container {
+            display: none;
+        }
+
+        /* Style the anchor tag as a button */
+        .button-link {
+            display: inline-block;
+            padding: 10px 20px;
+            margin-top: 20px;
+            background-color: #18BBB9;
+            color: white;
+            text-align: center;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+
+        .button-link:hover {
+            background-color: #17a2a9;
+        }
+
+        /* Style the submit button */
+        button[type="submit"] {
+            padding: 10px 20px;
+            background-color: #18BBB9;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #17a2a9;
+        }
+        /* Sidebar styles */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 180px;
+            height: 100%;
+            background-color: #18bbb9;
+            padding-top: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .sidebar a {
+            display: block;
+            padding: 10px 20px;
+            color: rgb(22, 20, 20);
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+        .sidebar a:hover {
+            background-color: #555;
+        }
+        .sidebar h3 {
+            margin-bottom: 10px;
+        }
+        .sidebar h3 img {
+            width: 100px; /* Adjust the size as needed */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Book Hospital Appointment</h1>
+        <form action="Appsubform.php" method="POST">
+            <input type="hidden" name="panel_id" value="1"> <!-- Replace with dynamic value -->
+            <label for="name">Your Name:</label>
+            <input type="text" id="name" name="name" required>
+            <br><br>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            <br><br>
+            <label for="phone">Phone Number:</label>
+            <input type="tel" id="phone" name="phone" required>
+            <br><br>
+            <label>Appointment Type:</label>
+            <br>
+            <input type="radio" id="meet-now" name="appointment-type" value="meet-now" onclick="toggleDateTimeFields()" required>
+            <label for="meet-now">Meet Now</label>
+            <br>
+            <input type="radio" id="preferred-date" name="appointment-type" value="preferred-date" onclick="toggleDateTimeFields()" required>
+            <label for="preferred-date">Preferred Date</label>
+            <br><br>
+            <div id="date-time-container" class="date-time-container">
+                <label for="date">Preferred Date:</label>
+                <input type="date" id="date" name="date">
+                <br><br>
+                <label for="time">Preferred Time:</label>
+                <input type="time" id="time" name="time">
+                <br><br>
+            </div>
+            <label for="service">Select Service:</label>
+            <select id="service" name="service" required>
+                <option value="">Select...</option>
+                <option value="General Checkup">General Checkup</option>
+                <option value="Emergency Care">Emergency Care</option>
+                <option value="Surgery">Surgery</option>
+                <option value="Radiology">Radiology</option>
+                <option value="Laboratory Tests">Laboratory Tests</option>
+                <!-- Add more options as needed -->
+            </select>
+            <br><br>
+            <label for="message">Additional Message:</label>
+            <textarea id="message" name="message" rows="4"></textarea>
+            <br><br>
+            <button type="submit">Submit</button>
+        </form>
+        <br>
+        <footer>
+            <p>Contact us for more information</p>
+            <p><i class="fas fa-phone"></i> +0173549648</p>
+        </footer>
+    </div>
+    <!-- Sidebar content -->
+    <div class="sidebar">
+        <h3><img src="logo_icon.png" alt="Travel Trekker Logo"></h3> 
+        <h2>Travel Trekker</h2>
+        <a href="Homepage.php">Home</a>
+        <a href="Mypf.php">My Profile</a>
+        <a href="MyBooking.php">My Booking</a>
+        <a href="Q&A first.html">About</a>
+        <a href="Contact.html">Contact</a>
+        <a href="Main.html">Log Out</a>
+    </div>
+
+    <script>
+        function toggleDateTimeFields() {
+            const meetNow = document.getElementById('meet-now');
+            const dateTimeContainer = document.getElementById('date-time-container');
+            dateTimeContainer.style.display = meetNow.checked ? 'none' : 'block';
+        }
+
+        // Ensure the date-time fields toggle correctly on page load
+        document.addEventListener('DOMContentLoaded', (event) => {
+            toggleDateTimeFields();
+        });
+    </script>
+</body>
+</html>
